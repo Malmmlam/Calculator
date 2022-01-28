@@ -3,7 +3,7 @@
     border-color: yellow;
     background-color: black;
     width: 400px;
-    height: 550px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -14,8 +14,10 @@
     border-color: indigo;
     background-color: gray;
     margin: 0;
+    max-height:15%;
     width: auto;
-    height: 20vh;
+    height: 15%;
+
     text-align: right;
 }
 
@@ -39,14 +41,14 @@
     border: solid;
     border-color: green;
     display: flex;
-    height: 25%;
+    height: 100%;
 }
 .number {
     color: black;
     background-color: gray;
     margin: 1%;
     width: 25%;
-    height: auto;
+    height: 100%;
 }
 
 .operator {
