@@ -1,0 +1,54 @@
+#frame {
+    border: solid;
+    border-color: yellow;
+    background-color: black;
+    width: 400px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+#display {
+    border: solid;
+    border-color: indigo;
+    background-color: gray;
+    margin: 0;
+    width: auto;
+    height: 20vh;
+    text-align: right;
+}
+
+#lower {
+    border: solid;
+    border-color: hotpink;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+#equals {
+    width: 50%;
+    background-color: green;
+}
+
+
+
+.keys {
+    border: solid;
+    border-color: green;
+    display: flex;
+    height: 25%;
+}
+.number {
+    color: black;
+    background-color: gray;
+    margin: 1%;
+    width: 25%;
+    height: auto;
+}
+
+.operator {
+    background-color: rgb(230, 90, 90);
+}
