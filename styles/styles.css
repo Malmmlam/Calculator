@@ -1,54 +1,57 @@
+html * {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 #frame {
-    border: solid;
-    border-color: yellow;
+    /* border: solid;
+    border-color: yellow; */
     background-color: black;
     width: 400px;
     height: 500px;
     display: flex;
     flex-direction: column;
-    padding: 5px;
+    padding: 10px;
 }
-
 #display {
-    border: solid;
-    border-color: indigo;
+    /* border: solid;
+    border-color: indigo; */
     background-color: gray;
     margin: 0;
     max-height:15%;
     width: auto;
     height: 15%;
-
     text-align: right;
+    font-size: 100%;
 }
-
 #lower {
-    border: solid;
-    border-color: hotpink;
+    /* border: solid;
+    border-color: hotpink; */
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-
-#equals {
-    width: 50%;
-    background-color: green;
-}
-
-
-
 .keys {
-    border: solid;
-    border-color: green;
+    /* border: solid;
+    border-color: green; */
     display: flex;
     height: 100%;
 }
-.number {
+.key {
+    border: solid;
     color: black;
     background-color: gray;
     margin: 1%;
     width: 25%;
     height: 100%;
+}
+
+.equals {
+    background-color: green;
+}
+
+.clear {
+    background-color: orange;
 }
 
 .operator {
