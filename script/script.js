@@ -32,22 +32,40 @@ function myFunction() {
 }
 
 const displayKeys = document.querySelectorAll('.display-key');
-const display = document.querySelector('#display');
+const userEntry = document.querySelector('#user-entry');
+const answer = document.querySelector('#answer');
 const clear = document.querySelector('.clear');
 const equals = document.querySelector('.equals');
 
 displayKeys.forEach(key => key.addEventListener('click', updateDisplay));
 clear.addEventListener('click', clearDisplay);
 
+equals.addEventListener('click', calculate);
+
 
 function updateDisplay(key) {
-    console.log(key.currentTarget.textContent);
-    display.textContent += key.currentTarget.textContent;
+        console.log(key.currentTarget.textContent);
+        userEntry.textContent += key.currentTarget.textContent;
 }
 
 function clearDisplay() {
-    display.textContent = "";
+    userEntry.textContent = "";
+    answer.textContent = "";
 }
 
-
+function calculate() {
+    if(userEntry === undefined) {return}
+    let userInput = userEntry.textContent.split(' ');
+    let divPos = userInput.indexOf('/');
+    let multPos = userInput.indexOf('*');
+    console.log(divPos);
+    console.log(multPos);
+    if(divPos !== -1) {
+        console.log(divPos);
+    }
+    if(multPos !== -1) {
+        console.log(multPos);
+    }
+    answer.textContent = operate(userInput[0], userInput[2], userInput[1]);
+}
 
