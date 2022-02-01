@@ -52,6 +52,10 @@ function updateDisplay(key) {
 
 function clearDisplay() {
     display.textContent = "";
+    clearData();
+}
+
+function clearData() {
     userNumbers = [];
     operators = [];
     numberHolder = '';
@@ -86,16 +90,25 @@ function onEqualsClick () {
 
 function calculate() {
     display.textContent = '';
+
     if(userNumbers.length < 2) {
         display.textContent = userNumbers[0];
         return
     }
+
     display.textContent = operate(userNumbers, operators[0]);
+
+    if(operators[0] === '/' && userNumbers[1] === 0) {
+        display.textContent = "You can't do that!";
+        clearData;
+        return;
+    }
+
     userNumbers[1] = parseInt(display.textContent);
     operators.shift();
     userNumbers.shift();
+
     if(operators[0] !== undefined) {
         display.textContent += operators[0];
     }
-    console.log('wait');
 }
