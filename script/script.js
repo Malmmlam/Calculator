@@ -58,6 +58,9 @@ function clearDisplay() {
 }
 
 function storeUserNumber() {
+    if(numberHolder === '') {
+        return;
+    }
     userNumbers.push(parseInt(numberHolder));
     numberHolder = '';
 }
@@ -83,6 +86,10 @@ function onEqualsClick () {
 
 function calculate() {
     display.textContent = '';
+    if(userNumbers.length < 2) {
+        display.textContent = userNumbers[0];
+        return
+    }
     display.textContent = operate(userNumbers, operators[0]);
     userNumbers[1] = parseInt(display.textContent);
     operators.shift();
@@ -92,4 +99,3 @@ function calculate() {
     }
     console.log('wait');
 }
-
