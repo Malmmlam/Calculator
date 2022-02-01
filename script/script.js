@@ -47,6 +47,9 @@ function storeNumbers(number) {
 }
 
 function updateDisplay(key) {
+        if(display.textContent === "You can't do that!") {
+            clearDisplay();
+        }
         display.textContent += key.currentTarget.textContent;
 }
 
