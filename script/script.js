@@ -38,21 +38,12 @@ displayKeys.forEach(key => key.addEventListener('click', updateDisplay));
 operatorKeys.forEach(operator => operator.addEventListener('click', operatorClick));
 numberKeys.forEach(number => number.addEventListener('click', storeNumbers));
 clear.addEventListener('click', clearDisplay);
-equals.addEventListener('click', calculate);
+equals.addEventListener('click', onEqualsClick);
 
-function operatorClick(operator) {
-    userNumbers.push(parseInt(numberHolder));
-    numberHolder = "";
-    operators.push(operator.currentTarget.textContent);
-    if(userNumbers.length === 2) {
-        calculate();
-    }
-}
 
 function storeNumbers(number) {
     numberHolder += number.currentTarget.textContent;
     numberholder = numberHolder.split('').reverse().join('');
-    console.log(numberHolder);
 }
 
 function updateDisplay(key) {
@@ -63,13 +54,35 @@ function clearDisplay() {
     display.textContent = "";
     userNumbers = [];
     operators = [];
+    numberHolder = '';
+}
+
+function storeUserNumber() {
+    userNumbers.push(parseInt(numberHolder));
+    numberHolder = '';
+}
+
+function operatorClick(operator) {
+    operators.push(operator.currentTarget.textContent);
+    if(numberHolder !== '') {
+        storeUserNumber();
+    }
+    if(operators.length < 2) {
+        return;
+    } else {
+        calculate();
+    }
+}
+
+function onEqualsClick () {
+    if(userNumbers.length < 2) {
+        storeUserNumber();
+    }
+    calculate();
 }
 
 function calculate() {
-    if(userNumbers.length < 2) {
-        userNumbers.push(parseInt(numberHolder));
-        numberHolder = '';
-    }
+    display.textContent = '';
     display.textContent = operate(userNumbers, operators[0]);
     userNumbers[1] = parseInt(display.textContent);
     operators.shift();
@@ -77,5 +90,6 @@ function calculate() {
     if(operators[0] !== undefined) {
         display.textContent += operators[0];
     }
+    console.log('wait');
 }
 
