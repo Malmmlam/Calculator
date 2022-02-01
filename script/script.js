@@ -15,18 +15,19 @@ function divide(numArray) {
 }
 
 function operate(numbers, operator) {
-    return operator === '+' ? add(numbers)
-        :  operator === '-' ? subtract(numbers)
-        :  operator === '*' ? multiply(numbers)
-        :  operator === '/' ? divide(numbers)
-        : 'error';
+   let result = operator === '+' ? add(numbers)
+             :  operator === '-' ? subtract(numbers)
+             :  operator === '*' ? multiply(numbers)
+             :  operator === '/' ? divide(numbers)
+             : 'error';
+
+    return Math.round(result * 100) / 100;
 }
 
 const displayKeys = document.querySelectorAll('.display-key');
-const userEntry = document.querySelector('#user-entry');
+const display = document.querySelector('#display');
 const numberKeys = document.querySelectorAll('.number');
 const operatorKeys = document.querySelectorAll('.operator');
-const answer = document.querySelector('#answer');
 const clear = document.querySelector('.clear');
 const equals = document.querySelector('.equals');
 let numberHolder = '';
@@ -55,27 +56,26 @@ function storeNumbers(number) {
 }
 
 function updateDisplay(key) {
-        userEntry.textContent += key.currentTarget.textContent;
+        display.textContent += key.currentTarget.textContent;
 }
 
 function clearDisplay() {
-    userEntry.textContent = "";
-    answer.textContent = "";
+    display.textContent = "";
     userNumbers = [];
     operators = [];
-    numberHolder = '';
-    userNumbers.forEach(number => console.log(number));
-    operators.forEach(operator => console.log(operator));
 }
 
 function calculate() {
     if(userNumbers.length < 2) {
         userNumbers.push(parseInt(numberHolder));
-        numberHolder = "";
+        numberHolder = '';
     }
-    answer.textContent = operate(userNumbers, operators[0]);
-    userNumbers[1] = parseInt(answer.textContent);
+    display.textContent = operate(userNumbers, operators[0]);
+    userNumbers[1] = parseInt(display.textContent);
     operators.shift();
     userNumbers.shift();
+    if(operators[0] !== undefined) {
+        display.textContent += operators[0];
+    }
 }
 
