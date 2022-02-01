@@ -31,14 +31,10 @@ Plan
             if the operator is / call the divide function
         DONE
         Create a function that reads the user entered number and returns it back when the equals button is pressed. 
-        Develop the above function so that it reads the user input and return an answer to a math problem of two numbers and an operator using the functions already created. 
-            The user entry will be converted to an array. What comes first if the array is sorted, operators or numbers. How are the operators sorted?
-            Go through the array and store the two numbers and operator in an object. Then call the operate function using the fields of that object.
+        DONE
+        Write a calculate function that works with two numbers and any single operator.
+        DONE
+        Write a calculate function that works with more than two numbers and any single operator.
+        Update calculate function to work with multiple operators following order of operations.
+        
 
-            Make an addition problem with more than two numbers work.
-                It could check the entered array and make sure there are only addition opperators "+", if this is the case it can pass all the numbers to the addition function. 
-
-        Problems to solve:
-            order of operations.
-                Go through the array looking for '*' or '/' if one of these is found complete the left most one first and replace those three items in the array with the result. 
-                Find a '*' or '/' in an array. 

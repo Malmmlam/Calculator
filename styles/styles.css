@@ -48,7 +48,8 @@ html * {
     display: flex;
     height: 100%;
 }
-.key {
+
+.number, .operator, .equals, .clear {
     border: solid;
     color: black;
     background-color: gray;

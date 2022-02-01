@@ -14,58 +14,68 @@ function divide(numArray) {
     return numArray.reduce((a, b) => a / b)
 }
 
-function operate(num1, num2, operator) {
-    return operator === '+' ? add([num1, num2])
-        :  operator === '-' ? subtract([num1, num2])
-        :  operator === '*' ? multiply([num1, num2])
-        :  operator === '/' ? divide([num1, num2])
+function operate(numbers, operator) {
+    return operator === '+' ? add(numbers)
+        :  operator === '-' ? subtract(numbers)
+        :  operator === '*' ? multiply(numbers)
+        :  operator === '/' ? divide(numbers)
         : 'error';
-}
-
-console.log(operate(10, 2, '/'));
-
-// const key = document.querySelector('.clear');
-// key.addEventListener('click', myFunction);
-
-function myFunction() {
-    display.textContent = key.textContent;
 }
 
 const displayKeys = document.querySelectorAll('.display-key');
 const userEntry = document.querySelector('#user-entry');
+const numberKeys = document.querySelectorAll('.number');
+const operatorKeys = document.querySelectorAll('.operator');
 const answer = document.querySelector('#answer');
 const clear = document.querySelector('.clear');
 const equals = document.querySelector('.equals');
+let numberHolder = '';
+let userNumbers = [];
+let operators = [];
 
 displayKeys.forEach(key => key.addEventListener('click', updateDisplay));
+operatorKeys.forEach(operator => operator.addEventListener('click', operatorClick));
+numberKeys.forEach(number => number.addEventListener('click', storeNumbers));
 clear.addEventListener('click', clearDisplay);
-
 equals.addEventListener('click', calculate);
 
+function operatorClick(operator) {
+    userNumbers.push(parseInt(numberHolder));
+    numberHolder = "";
+    operators.push(operator.currentTarget.textContent);
+    if(userNumbers.length === 2) {
+        calculate();
+    }
+}
+
+function storeNumbers(number) {
+    numberHolder += number.currentTarget.textContent;
+    numberholder = numberHolder.split('').reverse().join('');
+    console.log(numberHolder);
+}
 
 function updateDisplay(key) {
-        console.log(key.currentTarget.textContent);
         userEntry.textContent += key.currentTarget.textContent;
 }
 
 function clearDisplay() {
     userEntry.textContent = "";
     answer.textContent = "";
+    userNumbers = [];
+    operators = [];
+    numberHolder = '';
+    userNumbers.forEach(number => console.log(number));
+    operators.forEach(operator => console.log(operator));
 }
 
 function calculate() {
-    if(userEntry === undefined) {return}
-    let userInput = userEntry.textContent.split(' ');
-    let divPos = userInput.indexOf('/');
-    let multPos = userInput.indexOf('*');
-    console.log(divPos);
-    console.log(multPos);
-    if(divPos !== -1) {
-        console.log(divPos);
+    if(userNumbers.length < 2) {
+        userNumbers.push(parseInt(numberHolder));
+        numberHolder = "";
     }
-    if(multPos !== -1) {
-        console.log(multPos);
-    }
-    answer.textContent = operate(userInput[0], userInput[2], userInput[1]);
+    answer.textContent = operate(userNumbers, operators[0]);
+    userNumbers[1] = parseInt(answer.textContent);
+    operators.shift();
+    userNumbers.shift();
 }
 
