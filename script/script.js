@@ -107,7 +107,6 @@ function calculate() {
     userNumbers[1] = parseInt(display.textContent);
     operators.shift();
     userNumbers.shift();
-
     if(operators[0] !== undefined) {
         display.textContent += operators[0];
     }
