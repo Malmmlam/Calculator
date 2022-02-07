@@ -1,24 +1,24 @@
-function add(numArray) {
-    return numArray.reduce((a, b) => a + b);
+function add(a, b) {
+    return a + b;
 }
 
-function subtract(numArray) {
-    return numArray.reduce((a, b) => a - b);
+function subtract(a, b) {
+    return a - b;
 }
 
-function multiply(numArray) {
-    return numArray.reduce((a, b) => a * b);
+function multiply(a, b) {
+    return a * b;
 }
 
-function divide(numArray) {
-    return numArray.reduce((a, b) => a / b)
+function divide(a, b) {
+    return a / b;
 }
 
-function operate(numbers, operator) {
-   let result = operator === '+' ? add(numbers)
-             :  operator === '-' ? subtract(numbers)
-             :  operator === '*' ? multiply(numbers)
-             :  operator === '/' ? divide(numbers)
+function operate(a, b, operator) {
+   let result = operator === '+' ? add(a, b)
+             :  operator === '-' ? subtract(a, b)
+             :  operator === '*' ? multiply(a, b)
+             :  operator === '/' ? divide(a, b)
              : 'error';
 
     return Math.round(result * 100) / 100;
