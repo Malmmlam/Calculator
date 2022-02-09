@@ -24,90 +24,26 @@ function operate(a, b, operator) {
     return Math.round(result * 100) / 100;
 }
 
-const displayKeys = document.querySelectorAll('.display-key');
-const display = document.querySelector('#display');
-const numberKeys = document.querySelectorAll('.number');
-const operatorKeys = document.querySelectorAll('.operator');
-const clear = document.querySelector('.clear');
-const equals = document.querySelector('.equals');
-let numberHolder = '';
-let userNumbers = [];
-let operators = [];
+const keys = document.querySelectorAll(".key");
+const display = document.querySelectorAll("#display")
+let a = null;
+let b = null;
 
-displayKeys.forEach(key => key.addEventListener('click', updateDisplay));
-operatorKeys.forEach(operator => operator.addEventListener('click', operatorClick));
-numberKeys.forEach(number => number.addEventListener('click', storeNumbers));
-clear.addEventListener('click', clearDisplay);
-equals.addEventListener('click', onEqualsClick);
+keys.forEach(key => key.addEventListener('click', handleInput));
 
-
-function storeNumbers(number) {
-    numberHolder += number.currentTarget.textContent;
-    numberholder = numberHolder.split('').reverse().join('');
-}
-
-function updateDisplay(key) {
-        display.textContent += key.currentTarget.textContent;
-}
-
-function clearDisplay() {
-    display.textContent = "";
-    clearData();
-}
-
-function clearData() {
-    userNumbers = [];
-    operators = [];
-    numberHolder = '';
-}
-
-function storeUserNumber() {
-    if(numberHolder === '') {
-        return;
+function handleInput(e) {
+    if(a === null) {
+        a = parseInt(e.currentTarget.textContent);
+            console.log(a);
+            handleInput(e);
     }
-    userNumbers.push(parseInt(numberHolder));
-    numberHolder = '';
-}
-
-function operatorClick(operator) {
-    operators.push(operator.currentTarget.textContent);
-    if(numberHolder !== '') {
-        storeUserNumber();
+    else if(b === null) {
+        b = parseInt(e.currentTarget.textContent);
+        console.log(b);
+        handleInput(e);
     }
-    if(operators.length < 2) {
-        return;
-    } else {
-        calculate();
-    }
-}
-
-function onEqualsClick () {
-    if(userNumbers.length < 2) {
-        storeUserNumber();
-    }
-    calculate();
-}
-
-function calculate() {
-    display.textContent = '';
-
-    if(userNumbers.length < 2) {
-        display.textContent = userNumbers[0];
-        return
-    }
-
-    display.textContent = operate(userNumbers, operators[0]);
-
-    if(operators[0] === '/' && userNumbers[1] === 0) {
-        display.textContent = "You can't do that!";
-        clearData;
-        return;
-    }
-
-    userNumbers[1] = parseInt(display.textContent);
-    operators.shift();
-    userNumbers.shift();
-    if(operators[0] !== undefined) {
-        display.textContent += operators[0];
+    else {
+        console.log(operate(a, b, '+'));
+        display.textContent = operate(a, b, '+');
     }
 }

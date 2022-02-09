@@ -36,5 +36,10 @@ Plan
         DONE
         Write a calculate function that works with more than two numbers and any single operator.
         Update calculate function to work with multiple operators following order of operations.
+
+        REFACTOR
+            Create a function that takes 2 single digit numbers entered by the user and passes them to the add function. 
+                When the user clicks a number key the value of that number key is added to a variable. 
+                The user then cliks a second number key. That keys value is added to the second variable and the answer is provided on the screen.
         
 
