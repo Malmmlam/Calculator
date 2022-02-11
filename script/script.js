@@ -24,26 +24,31 @@ function operate(a, b, operator) {
     return Math.round(result * 100) / 100;
 }
 
-const keys = document.querySelectorAll(".key");
-const display = document.querySelectorAll("#display")
-let a = null;
+const numberKeys = document.querySelectorAll('.number');
+const equals = document.querySelector('.equals');
+const display = document.querySelectorAll('#display');
+let a = 0;
 let b = null;
+let inputNumber = [];
 
-keys.forEach(key => key.addEventListener('click', handleInput));
+equals.addEventListener('click', onEquals);
+numberKeys.forEach(key => key.addEventListener('click', getInputNumber));
 
-function handleInput(e) {
-    if(a === null) {
-        a = parseInt(e.currentTarget.textContent);
-            console.log(a);
-            handleInput(e);
-    }
-    else if(b === null) {
-        b = parseInt(e.currentTarget.textContent);
-        console.log(b);
-        handleInput(e);
-    }
-    else {
-        console.log(operate(a, b, '+'));
-        display.textContent = operate(a, b, '+');
-    }
+
+function getInputNumber(e) {
+    inputNumber.push(e.currentTarget.textContent);
+    console.log(inputNumber);
+}
+
+function onEquals(e) {
+    let numberString = inputNumber.toString();
+    numberString = removeCommas(numberString);
+    console.log(numberString);
+    a = parseInt(numberString);
+    console.log(a);
+}
+
+function removeCommas(string) {
+    newString = string.replace(/,/g, '');
+    return newString;
 }

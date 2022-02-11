@@ -38,6 +38,11 @@ Plan
         Update calculate function to work with multiple operators following order of operations.
 
         REFACTOR
+            DONE
+            Create a function that reads a number of any length entered by the user and prints it to the console.
+                The user clicks on a number. That number is stored in a text variable, as the user clicks on each subsequent number, they are also added to the end of the text variable. When the user presses equals, the text variable is converted to a number and printed to the console. 
+                Changed this to work with an array that is then converted to a text variable and finally to a number. 
+
             Create a function that takes 2 single digit numbers entered by the user and passes them to the add function. 
                 When the user clicks a number key the value of that number key is added to a variable. 
                 The user then cliks a second number key. That keys value is added to the second variable and the answer is provided on the screen.
