@@ -51,9 +51,17 @@ Plan
                 The user enters the second number and presses equals. The program should pass the second number to the b variable and then call the operate function and print the final result of the sum to the console. 
                     To achieve this create a seperate function that checks to see if the a variable is null if it is, assign a value to the a variable, else, if b is null, assign the value to the b variable. 
 
+                DONE
                 Ensure that the user can also enter negative numbers using the '-' key.
-                    If the user presses the minus whilst the 'inputNumber' array length is 0, add the minus symbol to the inputNumber array instead of treating it as an operator.
-                    To handle situation where the second number of a sum is a negative: use a global variable to keep track of the chosen operator, 'chosenOperator'. This variable should be undefined until the user presses an operator key, the value of the operator key is then assigned to the 'chosenOperator' variable. The program should check to see if the 'chosenOperator' variable is undefined. if it is not
+                    If the user presses the minus whilst the 'inputNumber' array length is 0, add the minus symbol to the 'inputNumber' array instead of treating it as an operator. This works for both 'a' and 'b' input variables as the 'inputNumber' array is reset on the press of an operator. 
+                
+                DONE
+                Enable functionallity for user other operators.
+                    Create a 'chosenOperator' variable that keeps track of what operator the user has chosen. Use this variable when calling the operate function after pressing equals. 
+                
+                
+                
+                    
 
 
         

@@ -40,6 +40,7 @@ equals.addEventListener('click', onEquals);
 let a = null;
 let b = null;
 let inputNumber = [];
+let chosenOperator = '';
 
 
 //functions for converting user input to numbers that can be processed by the operate and mathmatical functions. 
@@ -68,19 +69,19 @@ function assignValueToVariables() {
     }
 }
 
+//functions for handling non-numberkeys
 function onOperator(e) {
     let operator = e.currentTarget.textContent;
     if(operator === '-' && inputNumber.length === 0) {
         inputNumber.push(operator);
         return;
     } 
-
     assignValueToVariables();
+    chosenOperator = operator;
 }
-
 
 function onEquals() {
     assignValueToVariables();
-    let result = operate(a, b, '+');
+    let result = operate(a, b, chosenOperator);
     console.log(result);
 }
