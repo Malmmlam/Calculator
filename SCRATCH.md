@@ -59,6 +59,9 @@ Plan
                 Enable functionallity for user other operators.
                     Create a 'chosenOperator' variable that keeps track of what operator the user has chosen. Use this variable when calling the operate function after pressing equals. 
                 
+                Add clear functionallity to reset all variables.
+                    Create a function that resets the values of all variables if clear is pressed. 
+                
                 
                 
                     

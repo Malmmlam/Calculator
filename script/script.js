@@ -30,12 +30,14 @@ function operate(a, b, operator) {
 const numberKeys = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
+const clear = document.querySelector('.clear');
 const display = document.querySelectorAll('#display');
 
 numberKeys.forEach(key => key.addEventListener('click', getInputDigit));
 
 operators.forEach(operator => operator.addEventListener('click', onOperator));
 equals.addEventListener('click', onEquals);
+clear.addEventListener('click', clearVariables);
 
 let a = null;
 let b = null;
@@ -84,4 +86,12 @@ function onEquals() {
     assignValueToVariables();
     let result = operate(a, b, chosenOperator);
     console.log(result);
+}
+
+function clearVariables() {
+    a = null;
+    b = null;
+    inputNumber = [];
+    chosenOperator = '';
+    console.log(a, b, inputNumber, chosenOperator);
 }
