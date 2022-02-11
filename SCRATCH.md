@@ -43,8 +43,18 @@ Plan
                 The user clicks on a number. That number is stored in a text variable, as the user clicks on each subsequent number, they are also added to the end of the text variable. When the user presses equals, the text variable is converted to a number and printed to the console. 
                 Changed this to work with an array that is then converted to a text variable and finally to a number. 
 
-            Create a function that takes 2 single digit numbers entered by the user and passes them to the add function. 
-                When the user clicks a number key the value of that number key is added to a variable. 
-                The user then cliks a second number key. That keys value is added to the second variable and the answer is provided on the screen.
+            DONE
+            Create a function that adds two numbers together
+                The user enters the first number of any length, when they click on the plus key this number is stored in a number variable. The program then lets the user enter a second number of any length and waits for them to click on the equals key. When they click on the equals key the program converts the second number to a number variable and then calls the operate function and prints the result of the addition to the console. 
+                When the user presses the plus key.
+                Call the store variable function on the numbers stored in inputNumber array and store the first number in the a variable, then reset the inputNumber array to being empty. 
+                The user enters the second number and presses equals. The program should pass the second number to the b variable and then call the operate function and print the final result of the sum to the console. 
+                    To achieve this create a seperate function that checks to see if the a variable is null if it is, assign a value to the a variable, else, if b is null, assign the value to the b variable. 
+
+                Ensure that the user can also enter negative numbers using the '-' key.
+                    If the user presses the minus whilst the 'inputNumber' array length is 0, add the minus symbol to the inputNumber array instead of treating it as an operator.
+                    To handle situation where the second number of a sum is a negative: use a global variable to keep track of the chosen operator, 'chosenOperator'. This variable should be undefined until the user presses an operator key, the value of the operator key is then assigned to the 'chosenOperator' variable. The program should check to see if the 'chosenOperator' variable is undefined. if it is not
+
+
         
 

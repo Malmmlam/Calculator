@@ -58,14 +58,14 @@ html * {
     height: 100%;
 }
 
-.equals {
-    background-color: green;
-}
-
 .clear {
     background-color: orange;
 }
 
 .operator {
     background-color: rgb(230, 90, 90);
+}
+
+.equals {
+    background-color: green;
 }

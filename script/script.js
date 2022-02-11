@@ -11,6 +11,9 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if(b === 0) {
+        return "NOPE!"
+    }
     return a / b;
 }
 
@@ -21,34 +24,63 @@ function operate(a, b, operator) {
              :  operator === '/' ? divide(a, b)
              : 'error';
 
-    return Math.round(result * 100) / 100;
+    return result;
 }
 
 const numberKeys = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 const display = document.querySelectorAll('#display');
-let a = 0;
+
+numberKeys.forEach(key => key.addEventListener('click', getInputDigit));
+
+operators.forEach(operator => operator.addEventListener('click', onOperator));
+equals.addEventListener('click', onEquals);
+
+let a = null;
 let b = null;
 let inputNumber = [];
 
-equals.addEventListener('click', onEquals);
-numberKeys.forEach(key => key.addEventListener('click', getInputNumber));
 
-
-function getInputNumber(e) {
+//functions for converting user input to numbers that can be processed by the operate and mathmatical functions. 
+function getInputDigit(e) {
     inputNumber.push(e.currentTarget.textContent);
-    console.log(inputNumber);
 }
 
-function onEquals(e) {
+function getInputNumber(variable) {
     let numberString = inputNumber.toString();
     numberString = removeCommas(numberString);
-    console.log(numberString);
-    a = parseInt(numberString);
-    console.log(a);
+    variable = parseInt(numberString);
+    inputNumber = [];
+    return variable;
 }
 
 function removeCommas(string) {
     newString = string.replace(/,/g, '');
     return newString;
+}
+
+function assignValueToVariables() {
+    if(a === null) {
+        a = getInputNumber(a);
+    } else if(b === null) {
+        b = getInputNumber(b);
+    }
+}
+
+function onOperator(e) {
+    let operator = e.currentTarget.textContent;
+    if(operator === '-' && inputNumber.length === 0) {
+        inputNumber.push(operator);
+        return;
+    } 
+
+    assignValueToVariables();
+}
+
+
+function onEquals() {
+    assignValueToVariables();
+    let result = operate(a, b, '+');
+    console.log(result);
 }
