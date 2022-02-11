@@ -41,12 +41,17 @@ clear.addEventListener('click', clearVariables);
 
 let a = null;
 let b = null;
+let result = null;
 let inputNumber = [];
 let chosenOperator = '';
 
 
 //functions for converting user input to numbers that can be processed by the operate and mathmatical functions. 
 function getInputDigit(e) {
+    if(result !== null) {
+        clearVariables();
+    }
+
     inputNumber.push(e.currentTarget.textContent);
 }
 
@@ -74,24 +79,39 @@ function assignValueToVariables() {
 //functions for handling non-numberkeys
 function onOperator(e) {
     let operator = e.currentTarget.textContent;
+
+    if(result !== null) {
+        a = result;
+        b = null;
+        result = null;
+        chosenOperator = operator;
+        return;
+    }
+
     if(operator === '-' && inputNumber.length === 0) {
         inputNumber.push(operator);
         return;
     } 
+
     assignValueToVariables();
     chosenOperator = operator;
 }
 
 function onEquals() {
     assignValueToVariables();
-    let result = operate(a, b, chosenOperator);
+    console.log(a, chosenOperator, b);
+    result = operate(a, b, chosenOperator);
     console.log(result);
+    if(result === "NOPE!") {
+        clearVariables();
+    }
 }
 
 function clearVariables() {
     a = null;
     b = null;
+    result = null;
     inputNumber = [];
     chosenOperator = '';
-    console.log(a, b, inputNumber, chosenOperator);
+    console.log(a, b, result, inputNumber, chosenOperator);
 }
