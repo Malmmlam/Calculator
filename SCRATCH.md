@@ -68,10 +68,13 @@ Plan
                     when the result of a calculation is returned, store it in a global 'result' variable. If the next key the user presses is an operator the value stored in the 'result' variable should be added to the 'a' variable and set the 'b' variable to null and the 'chosenOperator' variable to the chosen operator, and finally result to null, then continue as if at the halfway point of any other operation. The rest of the operation should then be able to continue as before. 
                     If the next key the user presses is a number key however, all variables should be reset. 
                 
+                DONE
                 Ensure that calculator still works if user starts by pushing an operator key instead of a number.
                     If the user pushes an operator key first, assign the value 0 to the 'a' variable and the chosen operator as the 'chosenOperator' variable. 
                 
-                
+                DONE
+                Ensure calculator works if the user changes operator during a sum
+                    If the 'inputNumber' array variable is null, add simply return and don't assign anything to a variable. This will ensure that that variable cannot be undefined or null when trying to perform an operation. 
                     
 
 

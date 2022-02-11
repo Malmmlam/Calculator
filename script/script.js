@@ -56,6 +56,11 @@ function getInputDigit(e) {
 }
 
 function getInputNumber(variable) {
+    if(inputNumber.length === 0) {
+        variable = null;
+        return variable;
+    }
+
     let numberString = inputNumber.toString();
     numberString = removeCommas(numberString);
     variable = parseInt(numberString);
