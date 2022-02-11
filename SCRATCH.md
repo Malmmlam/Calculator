@@ -63,11 +63,13 @@ Plan
                 Add clear functionallity to reset all variables.
                     Create a function that resets the values of all variables if clear is pressed. 
                 
+                DONE
                 Add functionality so that the user can use the result of one calculation as the starting variable for a second calculation. This should only happen if the user presses a new operator button. If the user presses a number key instead, all variables should be cleared and the user entry treated as the beginning of a new sum
                     when the result of a calculation is returned, store it in a global 'result' variable. If the next key the user presses is an operator the value stored in the 'result' variable should be added to the 'a' variable and set the 'b' variable to null and the 'chosenOperator' variable to the chosen operator, and finally result to null, then continue as if at the halfway point of any other operation. The rest of the operation should then be able to continue as before. 
                     If the next key the user presses is a number key however, all variables should be reset. 
-                What if the user wants to do a sum subtracting a negative number from a result?
-                    
+                
+                Ensure that calculator still works if user starts by pushing an operator key instead of a number.
+                    If the user pushes an operator key first, assign the value 0 to the 'a' variable and the chosen operator as the 'chosenOperator' variable. 
                 
                 
                     

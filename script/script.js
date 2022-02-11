@@ -69,6 +69,11 @@ function removeCommas(string) {
 }
 
 function assignValueToVariables() {
+    if(a === null && inputNumber.length === 0) {
+        a = 0;
+        return;
+    }
+
     if(a === null) {
         a = getInputNumber(a);
     } else if(b === null) {
@@ -102,6 +107,7 @@ function onEquals() {
     console.log(a, chosenOperator, b);
     result = operate(a, b, chosenOperator);
     console.log(result);
+    chosenOperator = '';
     if(result === "NOPE!") {
         clearVariables();
     }
