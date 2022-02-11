@@ -74,7 +74,14 @@ Plan
                 
                 DONE
                 Ensure calculator works if the user changes operator during a sum
-                    If the 'inputNumber' array variable is null, add simply return and don't assign anything to a variable. This will ensure that that variable cannot be undefined or null when trying to perform an operation. 
+                    If the 'inputNumber' array variable is null, add simply return and don't assign anything to a variable. This will ensure that that variable cannot be undefined or null when trying to perform an operation. Then assign the newly chosen operator to the 'chosenOperator' variable. 
+                
+                DONE
+                Ensure that if the use presses equals first the calculator does not return an error and instead returns 0
+                    When the user presses equals check to see if a or b are null. if they are, return 0. 
+
+                If the user has only entered 1 value return this instead of 0 or error. 
+
                     
 
 

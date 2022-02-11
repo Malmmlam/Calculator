@@ -109,6 +109,20 @@ function onOperator(e) {
 
 function onEquals() {
     assignValueToVariables();
+    if(a === null && b === null) {
+        result = 0;
+        console.log(result);
+        chosenOperator = '';
+        return;
+    }
+
+    if(a !== null && b === null) {
+        result = a;
+        console.log(result);
+        chosenOperator = '';
+        return;
+    }
+
     console.log(a, chosenOperator, b);
     result = operate(a, b, chosenOperator);
     console.log(result);
