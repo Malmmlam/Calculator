@@ -80,7 +80,11 @@ Plan
                 Ensure that if the use presses equals first the calculator does not return an error and instead returns 0
                     When the user presses equals check to see if a or b are null. if they are, return 0. 
 
+                DONE
                 If the user has only entered 1 value return this instead of 0 or error. 
+
+                Return result to display instead of just the console.
+                    create and update display method that takes a string and send that to the display. 
 
                     
 

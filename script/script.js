@@ -90,6 +90,7 @@ function assignValueToVariables() {
 function onOperator(e) {
     let operator = e.currentTarget.textContent;
 
+    //if a calculation has already been completed and that result should be basis of a new sum.
     if(result !== null) {
         a = result;
         b = null;
@@ -98,6 +99,7 @@ function onOperator(e) {
         return;
     }
 
+    //deals with entry of negative numbers
     if(operator === '-' && inputNumber.length === 0) {
         inputNumber.push(operator);
         return;
@@ -109,13 +111,17 @@ function onOperator(e) {
 
 function onEquals() {
     assignValueToVariables();
+
+    //if user presses equals before entering numbers
     if(a === null && b === null) {
         result = 0;
         console.log(result);
+        updateDisplay(result);
         chosenOperator = '';
         return;
     }
 
+    //if user presses equals without entering 2 variables
     if(a !== null && b === null) {
         result = a;
         console.log(result);
@@ -126,6 +132,7 @@ function onEquals() {
     console.log(a, chosenOperator, b);
     result = operate(a, b, chosenOperator);
     console.log(result);
+    updateDisplay(result);
     chosenOperator = '';
     if(result === "NOPE!") {
         clearVariables();
@@ -139,4 +146,8 @@ function clearVariables() {
     inputNumber = [];
     chosenOperator = '';
     console.log(a, b, result, inputNumber, chosenOperator);
+}
+
+function updateDisplay(text) {
+    display.textContent = text;
 }
