@@ -82,10 +82,14 @@ Plan
 
                 DONE
                 If the user has only entered 1 value return this instead of 0 or error. 
+<<<<<<< HEAD
 
                 Return result to display instead of just the console.
                     create and update display method that takes a string and send that to the display. 
 
+=======
+                    
+>>>>>>> dbc167c (update SCRATCH.md)
                     
 
 
