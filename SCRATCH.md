@@ -82,14 +82,15 @@ Plan
 
                 DONE
                 If the user has only entered 1 value return this instead of 0 or error. 
-<<<<<<< HEAD
 
+                DONE
                 Return result to display instead of just the console.
                     create and update display method that takes a string and send that to the display. 
 
-=======
+                When dividing by 0 the NOPE! message should stay on the screen even though the variables are cleared. 
+                    use the update display method to clear the screen when the clear button is pressed not when the clear variables method is called.
+
                     
->>>>>>> dbc167c (update SCRATCH.md)
                     
 
 

@@ -1,20 +1,20 @@
 function add(a, b) {
-    return a + b;
+    return formatResult(a + b);
 }
 
 function subtract(a, b) {
-    return a - b;
+    return formatResult(a - b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return formatResult(a * b);
 }
 
 function divide(a, b) {
     if(b === 0) {
         return "NOPE!"
     }
-    return a / b;
+    return formatResult(a / b);
 }
 
 function operate(a, b, operator) {
@@ -27,24 +27,28 @@ function operate(a, b, operator) {
     return result;
 }
 
+function formatResult(result) {
+    return Math.round(result * 1000) / 1000;
+}
+
 const numberKeys = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 const clear = document.querySelector('.clear');
-const display = document.querySelectorAll('#display');
+const display = document.querySelector('#display');
 
 numberKeys.forEach(key => key.addEventListener('click', getInputDigit));
 
 operators.forEach(operator => operator.addEventListener('click', onOperator));
 equals.addEventListener('click', onEquals);
 clear.addEventListener('click', clearVariables);
+clear.addEventListener('click', clearDisplay);
 
 let a = null;
 let b = null;
 let result = null;
 let inputNumber = [];
 let chosenOperator = '';
-
 
 //functions for converting user input to numbers that can be processed by the operate and mathmatical functions. 
 function getInputDigit(e) {
@@ -53,6 +57,7 @@ function getInputDigit(e) {
     }
 
     inputNumber.push(e.currentTarget.textContent);
+    updateDisplay(inputNumber);
 }
 
 function getInputNumber(variable) {
@@ -149,5 +154,9 @@ function clearVariables() {
 }
 
 function updateDisplay(text) {
-    display.textContent = text;
+     display.textContent = removeCommas(text.toString());
+}
+
+function clearDisplay() {
+    display.textContent = '';
 }
