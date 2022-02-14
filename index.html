@@ -13,10 +13,14 @@
         <div id="display"></div>
         <div id="lower">
             <div class="keys">
+                <button class="key clear">clear</button>
+                <button class="key operator display-key">/</button>
+            </div>
+            <div class="keys">
                 <button data-key="55" class="key number display-key">7</button>
                 <button data-key="56" class="key number display-key">8</button>
                 <button data-key="57" class="key number display-key">9</button>
-                <button class="key operator display-key">+</button>
+                <button class="key operator display-key">*</button>                
             </div>
             <div class="keys">
                 <button data-key="52" class="key number display-key">4</button>
@@ -28,15 +32,13 @@
                 <button data-key="49" class="key number display-key">1</button>
                 <button data-key="50" class="key number display-key">2</button>
                 <button data-key="51" class="key number display-key">3</button>
-                <button class="key operator display-key">*</button>
+                <button class="key operator display-key">+</button>
             </div>
             <div class="keys">
-                <button data-key="48" class="key number display-key">0</button>
+                <button data-key="48" id="zero" class="key number display-key">0</button>
+                <button data-key="49" class="key number display-key">.</button>
                 <button class="key equals">=</button>
-                <button class="key clear">clear</button>
-                <button class="key operator display-key">/</button>
             </div>
-        </div>
     </div>
 </body>
 </html>

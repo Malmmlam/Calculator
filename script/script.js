@@ -57,6 +57,7 @@ function getInputDigit(e) {
     }
 
     inputNumber.push(e.currentTarget.textContent);
+    console.log(inputNumber);
     updateDisplay(inputNumber);
 }
 
@@ -68,7 +69,7 @@ function getInputNumber(variable) {
 
     let numberString = inputNumber.toString();
     numberString = removeCommas(numberString);
-    variable = parseInt(numberString);
+    variable = parseFloat(numberString);
     inputNumber = [];
     return variable;
 }
