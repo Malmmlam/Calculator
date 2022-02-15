@@ -44,20 +44,50 @@ equals.addEventListener('click', onEquals);
 clear.addEventListener('click', clearVariables);
 clear.addEventListener('click', clearDisplay);
 
+window.addEventListener('keydown', handleKeyboardInput);
+
 let a = null;
 let b = null;
 let result = null;
 let inputNumber = [];
 let chosenOperator = '';
 
+function handleKeyboardInput(e) {
+    // console.log(e.key);
+    if (e.key >= 0 && e.key <= 9) {
+        getKeyboardInputDigit(e.key);
+    }
+    if (e.key === '.') {
+        getKeyboardInputDigit(e.key);
+    }
+    if (e.key === '=' || e.key === 'Enter') {
+        onEquals();
+    }
+    if (e.key === 'Escape') {
+        clearVariables();
+        clearDisplay();
+    }
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+        
+    }
+}
+
 //functions for converting user input to numbers that can be processed by the operate and mathmatical functions. 
+function getKeyboardInputDigit(key) {
+    if(result !== null) {
+        clearVariables();
+    }
+
+    inputNumber.push(key);
+    updateDisplay(inputNumber);
+}
+
 function getInputDigit(e) {
     if(result !== null) {
         clearVariables();
     }
 
     inputNumber.push(e.currentTarget.textContent);
-    console.log(inputNumber);
     updateDisplay(inputNumber);
 }
 
@@ -93,6 +123,28 @@ function assignValueToVariables() {
 }
 
 //functions for handling non-numberkeys
+function onKeyboardOperator(key) {
+    let operator = key;
+
+    //if a calculation has already been completed and that result should be basis of a new sum.
+    if(result !== null) {
+        a = result;
+        b = null;
+        result = null;
+        chosenOperator = operator;
+        return;
+        }
+
+    //deals with entry of negative numbers
+    if(operator === '-' && inputNumber.length === 0) {
+        inputNumber.push(operator);
+        return;
+    } 
+    
+    assignValueToVariables();
+    chosenOperator = operator;
+}
+
 function onOperator(e) {
     let operator = e.currentTarget.textContent;
 

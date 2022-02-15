@@ -11,7 +11,6 @@ html * {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1%;
 }
 #display {
     border: solid;
@@ -29,8 +28,7 @@ html * {
 
 }
 #lower {
-    /* border: solid;
-    border-color: hotpink; */
+    border: solid;
     height: 100%;
     width: 100%;
     display: grid;
@@ -59,24 +57,72 @@ html * {
     font-weight: bold;
 }
 
+
+
+/* <!-- HTML !-->
+<button class="button-55" role="button">Button 55</button> */
+
+/* CSS */
+.number, .operator, .equals, .clear {
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #000;
+  /* box-sizing: border-box; */
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  /* height: 48px; */
+  justify-content: center;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.number:hover {
+  background-color: #082387;
+}
+
+.clear:hover {
+    background-color: #876D08;
+}
+
+.operator:hover {
+    background-color: #872D08;
+}
+
+.equals:hover {
+    background-color: #08872D;
+}
+
 .number, .operator, .equals {
-    background-color: #4b4bf8;
+    background-color: #380AA7;
     width: 25%;
     height: 100%;
 }
 
 .clear {
     width:75%;
-    background-color: #F8F84B;
+    background-color: #A7860A;
     color: black;
 }
 
 .operator {
-    background-color: #F84BA2;
+    background-color: #A7380A;
 }
 
 .equals {
-    background-color: #4BF8A2;
+    background-color: #0AA738;
 }
 
 #zero {
