@@ -1,117 +1,227 @@
-function add(numArray) {
-    return numArray.reduce((a, b) => a + b);
+function add(a, b) {
+    return formatResult(a + b);
 }
 
-function subtract(numArray) {
-    return numArray.reduce((a, b) => a - b);
+function subtract(a, b) {
+    return formatResult(a - b);
 }
 
-function multiply(numArray) {
-    return numArray.reduce((a, b) => a * b);
+function multiply(a, b) {
+    return formatResult(a * b);
 }
 
-function divide(numArray) {
-    return numArray.reduce((a, b) => a / b)
+function divide(a, b) {
+    if(b === 0) {
+        return "NOPE!"
+    }
+    return formatResult(a / b);
 }
 
-function operate(numbers, operator) {
-   let result = operator === '+' ? add(numbers)
-             :  operator === '-' ? subtract(numbers)
-             :  operator === '*' ? multiply(numbers)
-             :  operator === '/' ? divide(numbers)
+function operate(a, b, operator) {
+   let result = operator === '+' ? add(a, b)
+             :  operator === '-' ? subtract(a, b)
+             :  operator === '*' ? multiply(a, b)
+             :  operator === '/' ? divide(a, b)
              : 'error';
 
-    return Math.round(result * 100) / 100;
+    return result;
 }
 
-const displayKeys = document.querySelectorAll('.display-key');
-const display = document.querySelector('#display');
+function formatResult(result) {
+    return Math.round(result * 1000) / 1000;
+}
+
 const numberKeys = document.querySelectorAll('.number');
-const operatorKeys = document.querySelectorAll('.operator');
-const clear = document.querySelector('.clear');
+const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
-let numberHolder = '';
-let userNumbers = [];
-let operators = [];
+const clear = document.querySelector('.clear');
+const display = document.querySelector('#display');
 
-displayKeys.forEach(key => key.addEventListener('click', updateDisplay));
-operatorKeys.forEach(operator => operator.addEventListener('click', operatorClick));
-numberKeys.forEach(number => number.addEventListener('click', storeNumbers));
+numberKeys.forEach(key => key.addEventListener('click', getInputDigit));
+
+operators.forEach(operator => operator.addEventListener('click', onOperator));
+equals.addEventListener('click', onEquals);
+clear.addEventListener('click', clearVariables);
 clear.addEventListener('click', clearDisplay);
-equals.addEventListener('click', onEqualsClick);
 
+window.addEventListener('keydown', handleKeyboardInput);
 
-function storeNumbers(number) {
-    numberHolder += number.currentTarget.textContent;
-    numberholder = numberHolder.split('').reverse().join('');
+let a = null;
+let b = null;
+let result = null;
+let inputNumber = [];
+let chosenOperator = '';
+
+function handleKeyboardInput(e) {
+    console.log(e.key);
+    if (e.key >= 0 && e.key <= 9) {
+        getKeyboardInputDigit(e.key);
+    }
+    if (e.key === '.') {
+        getKeyboardInputDigit(e.key);
+    }
+    if (e.key === '=' || e.key === 'Enter') {
+        onEquals();
+    }
+    if (e.key === 'Escape') {
+        clearVariables();
+        clearDisplay();
+    }
+    if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+        onKeyboardOperator(e.key);
+    }
+    if(e.key === 'Backspace') {
+        onBackspace();
+    }
+
+function onBackspace() {
+    if(inputNumber.length > 0) {
+        inputNumber.pop();
+    } 
+    if(result !== null) {
+        clearVariables();
+    }
+    updateDisplay(inputNumber);
 }
 
-function updateDisplay(key) {
-        if(display.textContent === "You can't do that!") {
-            clearDisplay();
+//functions for converting user input to numbers that can be processed by the operate and mathmatical functions. 
+function getKeyboardInputDigit(key) {
+    if(result !== null) {
+        clearVariables();
+    }
+
+    inputNumber.push(key);
+    updateDisplay(inputNumber);
+}
+
+function getInputDigit(e) {
+    if(result !== null) {
+        clearVariables();
+    }
+
+    inputNumber.push(e.currentTarget.textContent);
+    updateDisplay(inputNumber);
+}
+
+function getInputNumber(variable) {
+    if(inputNumber.length === 0) {
+        variable = null;
+        return variable;
+    }
+
+    let numberString = inputNumber.toString();
+    numberString = removeCommas(numberString);
+    variable = parseFloat(numberString);
+    inputNumber = [];
+    return variable;
+}
+
+function removeCommas(string) {
+    newString = string.replace(/,/g, '');
+    return newString;
+}
+
+function assignValueToVariables() {
+    if(a === null && inputNumber.length === 0) {
+        a = 0;
+        return;
+    }
+
+    if(a === null) {
+        a = getInputNumber(a);
+    } else if(b === null) {
+        b = getInputNumber(b);
+    }
+}
+
+//functions for handling non-numberkeys
+function onKeyboardOperator(key) {
+    let operator = key;
+
+    //if a calculation has already been completed and that result should be basis of a new sum.
+    if(result !== null) {
+        a = result;
+        b = null;
+        result = null;
+        chosenOperator = operator;
+        return;
         }
-        display.textContent += key.currentTarget.textContent;
+
+    //deals with entry of negative numbers
+    if(operator === '-' && inputNumber.length === 0) {
+        inputNumber.push(operator);
+        return;
+    } 
+    
+    assignValueToVariables();
+    chosenOperator = operator;
+}
+
+function onOperator(e) {
+    let operator = e.currentTarget.textContent;
+
+    //if a calculation has already been completed and that result should be basis of a new sum.
+    if(result !== null) {
+        a = result;
+        b = null;
+        result = null;
+        chosenOperator = operator;
+        return;
+    }
+
+    //deals with entry of negative numbers
+    if(operator === '-' && inputNumber.length === 0) {
+        inputNumber.push(operator);
+        return;
+    } 
+
+    assignValueToVariables();
+    chosenOperator = operator;
+}
+
+function onEquals() {
+    assignValueToVariables();
+
+    //if user presses equals before entering numbers
+    if(a === null && b === null) {
+        result = 0;
+        console.log(result);
+        updateDisplay(result);
+        chosenOperator = '';
+        return;
+    }
+
+    //if user presses equals without entering 2 variables
+    if(a !== null && b === null) {
+        result = a;
+        console.log(result);
+        chosenOperator = '';
+        return;
+    }
+
+    console.log(a, chosenOperator, b);
+    result = operate(a, b, chosenOperator);
+    console.log(result);
+    updateDisplay(result);
+    chosenOperator = '';
+    if(result === "NOPE!") {
+        clearVariables();
+    }
+}
+
+function clearVariables() {
+    a = null;
+    b = null;
+    result = null;
+    inputNumber = [];
+    chosenOperator = '';
+    console.log(a, b, result, inputNumber, chosenOperator);
+}
+
+function updateDisplay(text) {
+     display.textContent = removeCommas(text.toString());
 }
 
 function clearDisplay() {
-    display.textContent = "";
-    clearData();
-}
-
-function clearData() {
-    userNumbers = [];
-    operators = [];
-    numberHolder = '';
-}
-
-function storeUserNumber() {
-    if(numberHolder === '') {
-        return;
-    }
-    userNumbers.push(parseInt(numberHolder));
-    numberHolder = '';
-}
-
-function operatorClick(operator) {
-    operators.push(operator.currentTarget.textContent);
-    if(numberHolder !== '') {
-        storeUserNumber();
-    }
-    if(operators.length < 2) {
-        return;
-    } else {
-        calculate();
-    }
-}
-
-function onEqualsClick () {
-    if(userNumbers.length < 2) {
-        storeUserNumber();
-    }
-    calculate();
-}
-
-function calculate() {
     display.textContent = '';
-
-    if(userNumbers.length < 2) {
-        display.textContent = userNumbers[0];
-        return
-    }
-
-    display.textContent = operate(userNumbers, operators[0]);
-
-    if(operators[0] === '/' && userNumbers[1] === 0) {
-        display.textContent = "You can't do that!";
-        clearData;
-        return;
-    }
-
-    userNumbers[1] = parseInt(display.textContent);
-    operators.shift();
-    userNumbers.shift();
-
-    if(operators[0] !== undefined) {
-        display.textContent += operators[0];
-    }
 }
