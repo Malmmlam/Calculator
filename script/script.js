@@ -53,7 +53,7 @@ let inputNumber = [];
 let chosenOperator = '';
 
 function handleKeyboardInput(e) {
-    // console.log(e.key);
+    console.log(e.key);
     if (e.key >= 0 && e.key <= 9) {
         getKeyboardInputDigit(e.key);
     }
@@ -68,8 +68,21 @@ function handleKeyboardInput(e) {
         clearDisplay();
     }
     if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
-        
+        onKeyboardOperator(e.key);
     }
+    if(e.key === 'Backspace') {
+        onBackspace();
+    }
+}
+
+function onBackspace() {
+    if(inputNumber.length > 0) {
+        inputNumber.pop();
+    } 
+    if(result !== null) {
+        clearVariables();
+    }
+    updateDisplay(inputNumber);
 }
 
 //functions for converting user input to numbers that can be processed by the operate and mathmatical functions. 
