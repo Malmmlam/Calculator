@@ -73,6 +73,7 @@ function handleKeyboardInput(e) {
     if(e.key === 'Backspace') {
         onBackspace();
     }
+}
 
 function onBackspace() {
     if(inputNumber.length > 0) {
